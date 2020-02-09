@@ -20,13 +20,20 @@ class ProductsController extends Controller
     public function manage()
     {
         $products = $this->products->find();
+
         return view('products.manage', ['products' => $products]);
     }
 
     public function add(Request $request)
     {
-        $product_data = $request->all('product_data');
+        echo(var_export($request->all()));
+        $validatedData = $request->validate([
+            'product_data[price]' => ['required'],
+            'product_data[name]' => ['required'],
+        ]);
 
-        return redirect()->route('products.manage');
+        echo(var_export($validatedData));
+
+        //return redirect()->route('products.manage');
     }
 }

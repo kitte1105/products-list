@@ -7,16 +7,29 @@ namespace App\Entities;
 class Product
 {
     /** @var string */
-    private $id;
+    public $id;
 
     /** @var string */
-    private $name;
+    public $name;
 
     /** @var string */
-    private $code;
+    public $code;
 
     /** @var int */
-    private $amount;
+    public $amount;
+
+    /** @var float */
+    public $price;
+
+    public function __construct($product_data)
+    {
+        $this->id = !empty($product_data['id']) ? $product_data['id'] : 0;
+        $this->name = !empty($product_data['name']) ? $product_data['name'] : '';
+        $this->code = !empty($product_data['code']) ? $product_data['code'] : '';
+        $this->amount = !empty($product_data['amount']) ? $product_data['amount'] : 0;
+
+        return $product_data;
+    }
 
     /**
      * @return string
@@ -93,5 +106,21 @@ class Product
             'name'   => $this->getName(),
             'amount' => $this->getAmount()
         ];
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param float $price
+     */
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
     }
 }
