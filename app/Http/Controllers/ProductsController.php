@@ -26,14 +26,11 @@ class ProductsController extends Controller
 
     public function add(Request $request)
     {
-        echo(var_export($request->all()));
         $validatedData = $request->validate([
-            'product_data[price]' => ['required'],
-            'product_data[name]' => ['required'],
+            'product_data.price' => ['required'],
+            'product_data.name' => ['required'],
         ]);
 
-        echo(var_export($validatedData));
-
-        //return redirect()->route('products.manage');
+        return redirect()->route('products.manage');
     }
 }
