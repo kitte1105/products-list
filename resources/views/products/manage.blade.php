@@ -10,10 +10,14 @@
 @section('content')
     @parent
     <h2>Available product.</h2>
+    <ul>
     @forelse ($products as $product)
-        <a href="products.view">{{ $product->name }}</a>
+            <li><a href="products.view?product_id={{ $product->product_id }}">{{ $product->name }}</a> <a href="products.update?product_id={{ $product->product_id }}">Update</a></li>
     @empty
         <p>No product</p>
     @endforelse
-    <a href="products.add">Add new product</a>
+    </ul>
+    <div>
+        <a href="products.add">Add new product</a>
+    </div>
 @endsection

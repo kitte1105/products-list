@@ -12,8 +12,12 @@
 */
 
 Route::redirect('/', '/products.manage', 301);
-Route::get('/products.manage', 'ProductsController@manage');
+Route::get('/products.manage', 'ProductsController@manage')->name('products.manage');
+Route::get('/products.view', 'ProductsController@view')->name('products.view');
 Route::get('/products.add', function(){
-    return view('products.add');
-});
+    return view('products.update', ['mode' => 'add']);
+}) -> name('products.add');
+Route::get('/products.update', 'ProductsController@update')->name('products.update');
+
 Route::post('/products.add', 'ProductsController@add');
+Route::post('/products.update', 'ProductsController@store');
